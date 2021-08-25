@@ -62,7 +62,7 @@ I split the agreement text on a regular expression for unit values for each clas
 
 I initially considered creating a state machine as a more elegant way of tokenizing the text input, but I figured that a simple if-else structure—though it would be a little clunky—would ultimately be easier to debug and easier for others to extend and alter.
 
-After having [downloaded](#finding-and-downloading-pdfs) the agreement PDFs, you should have an `agreements` directory with a collection of files named similar to `report_120_54_CS.pdf` (where the 120 here is the ID of the receiving school, 54 is the ID of the sending school, and CS is the code you entered to represent the major whose files you scraped). To convert that file to a dictionary of major requirements to equivalent courses, you would run the following:
+After having [downloaded](#1-finding-and-downloading-pdfs) the agreement PDFs, you should have an `agreements` directory with a collection of files named similar to `report_120_54_CS.pdf` (where the 120 here is the ID of the receiving school, 54 is the ID of the sending school, and CS is the code you entered to represent the major whose files you scraped). To convert that file to a dictionary of major requirements to equivalent courses, you would run the following:
 
 <code>extractor = PDFExtractor('report_120_54_CS.pdf')
 reqs_to_equivs = extractor.process_page()
@@ -82,7 +82,7 @@ maker = DatabaseMaker('UCI', 'CS', id_to_key)
 maker.add_classes()
 </code>
 
-Note that, unlike in the [previous call](#extracting-text-from-the-pdfs-and-processing) to get_pdfs(), we're explicitly storing the id_to_key dictionary.
+Note that, unlike in the [previous call](#2-extracting-text-from-the-pdfs-and-processing) to get_pdfs(), we're explicitly storing the id_to_key dictionary.
 
 This code takes a couple minutes to run. The result is a roughly-finished JSON file that outlines the schools with courses that meet the requirements for the school and major you supplied.
 
@@ -96,7 +96,7 @@ The interface appears as follows:
 
 ![Front-end interface for reverse transfer search](https://www.jacobtbigham.com/static/img/transfers/transfer_animation.gif)
 
-## TLDR
+## TL;DR
 If you want to generate a JSON file that contains a list of CCCs with courses that meet particular CSU or US requirements, then use do the following:
 1. Find the UC or CSU's school ID at https://assist.org/api/institutions
 2. Find the specific major for which you want to find course equivalencies (if you run into errors for your destination school, then you made need to change the categoryCode to *dept* in line 30 of `pdfgrabber.py`
