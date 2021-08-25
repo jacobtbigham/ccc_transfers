@@ -82,7 +82,7 @@ maker = DatabaseMaker('UCI', 'CS', id_to_key)
 maker.add_classes()
 </code>
 
-Note that, unlike in the [previous call](#2-extracting-text-from-the-pdfs-and-processing) to get_pdfs(), we're explicitly storing the id_to_key dictionary.
+Note that, unlike in the [previous call](#1-finding-and-downloading-pdfs) to get_pdfs(), we're explicitly storing the id_to_key dictionary.
 
 This code takes a couple minutes to run. The result is a roughly-finished JSON file that outlines the schools with courses that meet the requirements for the school and major you supplied.
 
