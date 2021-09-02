@@ -44,10 +44,11 @@ I decided to store the PDFs locally to facilitate inspecting agreements for debu
 
 To find and download the articulation agreements for the Computer Science major at UCI, for example, run the following:
 
-<code>from pdfgrabber import PDFGrabber
+```
+from pdfgrabber import PDFGrabber
 grabber = PDFGrabber(120, 'Computer Science, B.S.', 'CS', 0.2)
 grabber.get_pdfs()
-</code>
+```
 
 This will store all Computer Science articulation agreements to UCI in the `/agreements` folder relative to the location for the `pdfgrabber.py` script.
 
@@ -64,9 +65,10 @@ I initially considered creating a state machine as a more elegant way of tokeniz
 
 After having [downloaded](#1-finding-and-downloading-pdfs) the agreement PDFs, you should have an `agreements` directory with a collection of files named similar to `report_120_54_CS.pdf` (where the 120 here is the ID of the receiving school, 54 is the ID of the sending school, and CS is the code you entered to represent the major whose files you scraped). To convert that file to a dictionary of major requirements to equivalent courses, you would run the following:
 
-<code>extractor = PDFExtractor('report_120_54_CS.pdf')
+```
+extractor = PDFExtractor('report_120_54_CS.pdf')
 reqs_to_equivs = extractor.process_page()
-</code>
+```
 
 Of course, we want to process all the agreements (roughly 100) for each major and create a JSON file that relates all equivalencies, which we do next.
 
@@ -76,11 +78,12 @@ Armed with the ability to scrape the equivalencies for each PDF (and to generate
 
 The full sequence of calls to fetch PDFs, extract text, and aggregate into a JSON file is as follows:
 
-<code>grabber = PDFGrabber(120, 'Computer Science, B.S.', 'CS', 0.2)
+```
+grabber = PDFGrabber(120, 'Computer Science, B.S.', 'CS', 0.2)
 id_to_key = grabber.get_pdfs()
 maker = DatabaseMaker('UCI', 'CS', id_to_key)
 maker.add_classes()
-</code>
+```
 
 Note that, unlike in the [previous call](#1-finding-and-downloading-pdfs) to get_pdfs(), we're explicitly storing the id_to_key dictionary.
 
@@ -103,7 +106,8 @@ If you want to generate a JSON file that contains a list of CCCs with courses th
 3. Decide on a nickname for the major (like "CS" for Computer Science) and pick a delay time for API calls (like 0.2 seconds)
 4. Run the following code in a Python shell:
 
-	<code>from pdfgrabber import PDFGrabber
+	```
+	from pdfgrabber import PDFGrabber
 	from databasemaker import DatabaseMaker
 	school_id = ENTER_SCHOOL_ID_HERE
 	school_name = ENTER_SCHOOL_NAME_HERE
@@ -114,7 +118,7 @@ If you want to generate a JSON file that contains a list of CCCs with courses th
 	id_to_key = grabber.get_pdfs()
 	maker = DatabaseMaker(school_name, nickname, id_to_key)
 	maker.add_classes()
-	</code>
+	```
 
 5. Manually edit the resulting JSON file.
 
