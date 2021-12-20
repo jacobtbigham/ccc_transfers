@@ -100,7 +100,7 @@ The interface appears as follows:
 ![Front-end interface for reverse transfer search](https://www.jacobtbigham.com/static/img/transfers/transfer_animation.gif)
 
 ## TL;DR
-If you want to generate a JSON file that contains a list of CCCs with courses that meet particular CSU or US requirements, then use do the following:
+If you want to generate a JSON file that contains a list of CCCs with courses that meet particular CSU or UC requirements, then use do the following:
 1. Find the UC or CSU's school ID at https://assist.org/api/institutions
 2. Find the specific major for which you want to find course equivalencies (if you run into errors for your destination school, then you made need to change the categoryCode to *dept* in line 30 of `pdfgrabber.py`
 3. Decide on a nickname for the major (like "CS" for Computer Science) and pick a delay time for API calls (like 0.2 seconds)
